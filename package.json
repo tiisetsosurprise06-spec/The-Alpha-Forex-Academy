@@ -1,0 +1,33 @@
+{
+  "name": "maniac-forex-academy",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Maniac Forex Academy — free, open, educational forex platform (Stage A + vertical slice)",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 5173",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.1",
+    "lucide-react": "^0.268.0",
+    "lightweight-charts": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.4.8",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.0",
+    "vitest": "^1.3.6",
+    "@testing-library/react": "^15.0.0",
+    "@testing-library/jest-dom": "^6.0.0"
+  }
+}

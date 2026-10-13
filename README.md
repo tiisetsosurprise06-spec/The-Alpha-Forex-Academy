@@ -1,30 +1,44 @@
-# The Alpha Forex Academy
+# Maniac Forex Academy (Stage A + vertical slice)
 
-This repository contains a static, open-source scaffold for a free Forex course website. It aims to:
+This repository contains the initial implementation for Maniac Forex Academy. It implements Stage A (scaffold, theme, navigation, routes) and a vertical slice of Stage B (curriculum data, lesson reader, diagrams, quiz engine, progress persistence).
 
-- Provide a complete list of important forex topics, organized for learning.
-- Curate free resources and YouTube channels for each topic.
-- Let learners track progress locally (in their browser) and export/import progress.
+Important notes
+- This is a local-first demo. All progress and journal entries are persisted in LocalStorage. There is no authentication in Stage A.
+- No external API keys are required to run this version.
 
-What's included
-- index.html — frontend for the course and progress tracker
-- styles.css — simple styling
-- app.js — client logic, topics and resource data, localStorage progress
+Quick start
+1. Clone the repository
+2. Install dependencies:
+   - npm install
+3. Run the dev server:
+   - npm run dev
+4. Open http://localhost:5173
 
-How to contribute
-- Add resources to the RESOURCES array in app.js or add a JSON file and fetch it from the site.
-- Add more topics to the TOPICS array in app.js.
-- Open issues and pull requests with curated links, timestamps, and short descriptions so others can verify the resource is still free.
+Build
+- npm run build
+- Preview the production build with npm run preview
 
-Deployment
-- This is a static site and can be hosted on GitHub Pages, Netlify, Vercel, or any static hosting.
-- To enable GitHub Pages, configure the repository settings -> Pages -> deploy from the `main` branch (root).
+Testing
+- npm run test
 
-Next improvements (suggestions)
-- Add per-topic pages with embedded playlists and timestamps.
-- Add tagging and difficulty levels for topics.
-- Add server-side user accounts to persist progress across devices (requires a backend).
-- Add automated link-checking (CI) to validate that YouTube links remain available.
+Project structure (selected)
+- src/
+  - components/DiagramRenderer.tsx — original SVG diagram renderer used in lessons
+  - components/Quiz.tsx — lightweight quiz engine
+  - data/curriculum.ts — structured curriculum data and lessons
+  - lib/types.ts — TypeScript types for curriculum and progress
+  - pages/ — route pages
+  - utils/storage.ts — LocalStorage persistence, export/import helpers
+
+Next stages (planned)
+- Stage B complete: more lessons, interactive diagram editing, more questions per lesson, randomization, and prerequisites enforcement.
+- Stage C: dashboard improvements, resource library, glossary, and validated import.
+- Stage D: risk calculator, fully-functional trading lab with bundled datasets, and journal features.
+- Stage E: tests, accessibility audits, deployment instructions.
 
 License
-- Add a license if you want to set reuse permissions. Currently the repository has no explicit license file.
+- MIT (see LICENSE)
+
+Content & attribution
+- Curriculum content and diagrams in this release are original and simplified for the learning demo. External resources and links will be added in Stage C with verified attribution and licence notes.
+
