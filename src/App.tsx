@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
 import Academy from './pages/Academy';
@@ -16,11 +16,12 @@ import About from './pages/About';
 import Settings from './pages/Settings';
 
 function Sidebar() {
-  const location = useLocation();
   return (
     <aside className="sidebar">
-      <div className="logo">MANIAC <span style={{color:'#22C55E'}}>FOREX</span> ACADEMY</div>
-      <nav style={{marginTop:18}}>
+      <div className="logo">
+        MANIAC <span style={{ color: '#22C55E' }}>FOREX</span> ACADEMY
+      </div>
+      <nav style={{ marginTop: 18 }}>
         <Link className="nav-link" to="/">Home</Link>
         <Link className="nav-link" to="/dashboard">Dashboard</Link>
         <Link className="nav-link" to="/academy">Academy</Link>
@@ -39,9 +40,25 @@ function Sidebar() {
   );
 }
 
+function MobileTopNav() {
+  return (
+    <div className="mobile-top">
+      <div className="logo">
+        MANIAC <span style={{ color: '#22C55E' }}>FOREX</span>
+      </div>
+      <nav style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        <Link className="nav-link" to="/">Home</Link>
+        <Link className="nav-link" to="/academy">Academy</Link>
+        <Link className="nav-link" to="/dashboard">Dashboard</Link>
+      </nav>
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <div className="app-shell">
+      <MobileTopNav />
       <Sidebar />
       <main className="main">
         <Routes>
