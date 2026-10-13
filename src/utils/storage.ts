@@ -1,33 +1,41 @@
-import { saveAs } from 'file-saver';
-import { UserProgress } from '../lib/types';
+export function getStorage(): Storage | null {
+  if (typeof window === 'undefined') return null;
+  return window.localStorage;
+}
 
-const STORAGE_KEY = 'maniac_forex_progress_v1';
-
-export function loadProgress(): UserProgress | null {
+export function loadProgress(): any | null {
+  const storage = getStorage();
+  if (!storage) return null;
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-    return JSON.parse(raw) as UserProgress;
-  } catch (e) {
-    console.error('Failed to load progress', e);
+    const raw = storage.getItem('maniac_forex_progress_v1');
+    return raw ? JSON.parse(raw) : null;
+  } catch (err) {
+    console.error('Could not parse progress from localStorage', err);
     return null;
   }
 }
 
-export function saveProgress(progress: UserProgress) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-  } catch (e) {
-    console.error('Failed to save progress', e);
-    throw e;
-  }
+export function saveProgress(progress: any) {
+  const storage = getStorage();
+  if (!storage) return;
+  storage.setItem('maniac_forex_progress_v1', JSON.stringify(progress));
 }
 
-export function exportProgress(progress: UserProgress) {
+export function exportProgress(progress: any) {
+  if (typeof window === 'undefined') return;
   const blob = new Blob([JSON.stringify(progress, null, 2)], { type: 'application/json' });
-  saveAs(blob, 'maniac-forex-progress.json');
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'maniac-forex-progress.json';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
 }
 
 export function resetProgress() {
-  localStorage.removeItem(STORAGE_KEY);
+  const storage = getStorage();
+  if (!storage) return;
+  storage.removeItem('maniac_forex_progress_v1');
 }
