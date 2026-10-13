@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weather Dashboard — The Alpha Forex Academy</title>
+  <link rel="stylesheet" href="weather-dashboard/styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="container">
+      <h1>Weather Dashboard</h1>
+      <p class="subtitle">Quick local weather and 7-day forecast (powered by Open‑Meteo, no API key needed).</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <div class="search">
+        <input id="city-input" placeholder="Search city (e.g. London, New York, Tokyo)" />
+        <button id="search-btn">Search</button>
+        <button id="geo-btn" title="Use your current location">Use my location</button>
+      </div>
+      <div id="results-list" class="results"></div>
+    </section>
+
+    <section id="current" class="card hidden">
+      <h2 id="place">—</h2>
+      <div class="current-row">
+        <div class="temp">
+          <div id="temperature">--°C</div>
+          <div id="description">—</div>
+        </div>
+        <div class="meta">
+          <div>Wind: <span id="wind">—</span></div>
+          <div>Time: <span id="time">—</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="forecast" class="card hidden">
+      <h3>7-day forecast</h3>
+      <div id="forecast-grid" class="forecast-grid"></div>
+    </section>
+
+    <section class="card" id="notes">
+      <h4>Notes</h4>
+      <ul>
+        <li>Data provided by Open‑Meteo (https://open-meteo.com) — no API key required for basic usage.</li>
+        <li>This demo uses the Open‑Meteo geocoding API to turn city names into coordinates.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <small>Static demo — add to the repo and deploy with GitHub Pages or any static host.</small>
+  </footer>
+
+  <script src="weather-dashboard/app.js"></script>
+</body>
+</html>
