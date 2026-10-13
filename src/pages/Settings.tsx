@@ -1,19 +1,32 @@
 import React from 'react';
-import { loadProgress, exportProgress, resetProgress } from '../utils/storage';
+import { Link } from 'react-router-dom';
 
 export default function Settings(){
-  const progress = loadProgress();
+  const progress = typeof window !== 'undefined' ? window.localStorage.getItem('maniac_forex_progress_v1') : null;
 
   function handleExport(){
-    if(progress) exportProgress(progress as any);
-    else alert('No progress to export');
+    if(!progress) {
+      alert('No progress to export');
+      return;
+    }
+    const blob = new Blob([progress], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'maniac-forex-progress.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
   }
 
   function handleReset(){
     if(confirm('Are you sure you want to reset all local progress? This cannot be undone.')){
-      resetProgress();
+      if (typeof window !== 'undefined') {
+        window.localStorage.removeItem('maniac_forex_progress_v1');
+      }
       alert('Progress reset');
-      location.reload();
+      window.location.reload();
     }
   }
 
@@ -22,9 +35,10 @@ export default function Settings(){
       <div className="card">
         <h2>Settings & Data</h2>
         <p className="small-muted">Manage local progress and learning preferences.</p>
-        <div style={{marginTop:12}}>
-          <button className="nav-link" onClick={handleExport}>Export progress</button>
-          <button className="nav-link" onClick={handleReset} style={{marginLeft:12}}>Reset progress</button>
+        <div style={{marginTop:12, display:'flex', gap:12, flexWrap:'wrap'}}>
+          <button type="button" className="nav-link" onClick={handleExport}>Export progress</button>
+          <button type="button" className="nav-link" onClick={handleReset}>Reset progress</button>
+          <Link to="/dashboard" className="nav-link">Dashboard</Link>
         </div>
       </div>
 

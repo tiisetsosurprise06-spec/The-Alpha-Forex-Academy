@@ -1,3 +1,5 @@
+import { saveAs } from 'file-saver';
+
 export function getStorage(): Storage | null {
   if (typeof window === 'undefined') return null;
   return window.localStorage;
@@ -24,14 +26,7 @@ export function saveProgress(progress: any) {
 export function exportProgress(progress: any) {
   if (typeof window === 'undefined') return;
   const blob = new Blob([JSON.stringify(progress, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'maniac-forex-progress.json';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
+  saveAs(blob, 'maniac-forex-progress.json');
 }
 
 export function resetProgress() {

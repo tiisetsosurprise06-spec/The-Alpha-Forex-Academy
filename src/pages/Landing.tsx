@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Landing(){
   return (
@@ -7,7 +8,7 @@ export default function Landing(){
         <h1>Welcome to Maniac Forex Academy</h1>
         <p className="small-muted">A free, structured forex curriculum with interactive lessons, quizzes, and a paper-trading lab. This demo implements Stage A and a vertical slice of Stage B.</p>
         <div style={{marginTop:12}}>
-          <a className="nav-link" href="/academy">Start learning →</a>
+          <Link to="/academy" className="nav-link">Start learning →</Link>
         </div>
       </div>
 
